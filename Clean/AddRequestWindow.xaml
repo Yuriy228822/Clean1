@@ -1,0 +1,49 @@
+﻿<Window x:Class="Clean.AddRequestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавить заявку" Height="400" Width="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Клиент:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Name="txtClientName" Grid.Row="0" Grid.Column="1" Margin="5,0"/>
+
+        <Label Content="Комната:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Name="txtRoom" Grid.Row="1" Grid.Column="1" Margin="5,0"/>
+
+        <Label Content="Тип уборки:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+        <ComboBox Name="cmbCleaningType" Grid.Row="2" Grid.Column="1" Margin="5,0" SelectionChanged="CalculateCost">
+            <ComboBoxItem Content="Генеральная" Tag="2000"/>
+            <ComboBoxItem Content="Поддерживающая" Tag="1500"/>
+            <ComboBoxItem Content="Экспресс" Tag="1000"/>
+        </ComboBox>
+
+        <Label Content="Дополнительные услуги:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
+        <StackPanel x:Name="stackPanelAdditionalServices" Orientation="Vertical" Grid.Row="3" Grid.Column="1" Margin="5,0">
+            <CheckBox Content="Мойка окон" Tag="500" Checked="CalculateCost" Unchecked="CalculateCost"/>
+            <CheckBox Content="Дезинфекция" Tag="700" Checked="CalculateCost" Unchecked="CalculateCost"/>
+            <CheckBox Content="Удаление пятен" Tag="300" Checked="CalculateCost" Unchecked="CalculateCost"/>
+        </StackPanel>
+
+        <Label Content="Площадь (кв.м):" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Name="txtArea" Grid.Row="4" Grid.Column="1" Margin="5,0" TextChanged="CalculateCost"/>
+
+        <Label Content="Стоимость:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Name="txtCost" Grid.Row="5" Grid.Column="1" Margin="5,0" IsReadOnly="True"/>
+
+        <Button Content="Добавить" Grid.Row="6" Grid.Column="1" Width="100" Margin="0,10,0,0" HorizontalAlignment="Left" Click="AddRequest_Click"/>
+    </Grid>
+</Window>
